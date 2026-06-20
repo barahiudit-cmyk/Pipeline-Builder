@@ -1,0 +1,192 @@
+/* ---------- design tokens (dark theme) ---------- */
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --bg: #f9fafb;     
+  --panel: #111113;
+  --panel-2: #16161a;
+  --border: #1f1f23;
+  --border-strong: #27272a;
+  --text: #e5e5e7;
+  --text-muted: #71717a;
+  --text-dim: #52525b;
+  --primary: #6366f1;
+  --primary-dark: #4f46e5;
+  --success: #10b981;
+  --danger: #ef4444;
+  --shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+  --radius: 8px;
+}
+
+.dark {
+  --bg: #0A0A0B;        
+}
+
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Inter', 'Segoe UI', Roboto, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  -webkit-font-smoothing: antialiased;
+}
+
+
+/* ---------- custom scrollbar ---------- */
+
+/* webkit browsers (chrome, edge, safari) */
+.custom-scrollbar::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background: rgba(113, 113, 122, 0.3);
+  border-radius: 3px;
+  transition: background 0.2s ease;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: rgba(113, 113, 122, 0.6);
+}
+
+/* darker on dark mode */
+.dark .custom-scrollbar::-webkit-scrollbar-thumb {
+  background: rgba(82, 82, 91, 0.4);
+}
+
+.dark .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: rgba(113, 113, 122, 0.7);
+}
+
+/* firefox */
+.custom-scrollbar {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(113, 113, 122, 0.3) transparent;
+}
+
+.dark .custom-scrollbar {
+  scrollbar-color: rgba(82, 82, 91, 0.4) transparent;
+}
+
+/* hide scrollbar when not hovering (optional - more minimal) */
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  visibility: hidden;
+}
+
+.custom-scrollbar:hover::-webkit-scrollbar-thumb {
+  visibility: visible;
+}
+
+
+/* ---------- custom minimap ---------- */
+.custom-minimap {
+  background: rgba(255, 255, 255, 0.9) !important;
+  border: 1px solid #E5E7EB !important;
+  border-radius: 10px !important;
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1) !important;
+  width: 200px !important;
+  height: 150px !important;
+}
+
+.dark .custom-minimap {
+  background: rgba(17, 17, 19, 0.85) !important;
+  border: 1px solid #27272A !important;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5) !important;
+  backdrop-filter: blur(8px);
+}
+
+/* viewport indicator */
+.custom-minimap .react-flow__minimap-mask {
+  fill: rgba(99, 102, 241, 0.15) !important;
+  stroke: #6366F1 !important;
+  stroke-width: 1.5px !important;
+}
+
+.dark .custom-minimap .react-flow__minimap-mask {
+  fill: rgba(99, 102, 241, 0.2) !important;
+}
+
+/* shrink the node rectangles inside */
+.custom-minimap .react-flow__minimap-node {
+  transform: scale(0.6);
+  transform-origin: center;
+  transition: transform 0.2s ease;
+}
+
+/* responsive */
+@media (max-width: 1024px) {
+  .custom-minimap {
+    width: 140px !important;
+    height: 100px !important;
+  }
+}
+
+@media (max-width: 640px) {
+  .custom-minimap {
+    width: 200px !important;
+    height: 100px !important;
+  }
+  .custom-minimap .react-flow__minimap-node {
+  transform: scale(0.4);
+  transform-origin: center;
+  transition: transform 0.2s ease;
+}
+
+}
+
+/* ---------- reactflow handles ---------- */
+.react-flow__handle {
+  width: 10px !important;
+  height: 10px !important;
+  background: var(--panel-2) !important;
+  border: 2px solid var(--primary) !important;
+  transition: transform 0.15s ease;
+}
+
+.react-flow__handle:hover {
+  transform: scale(1.3);
+}
+
+/* edges */
+.react-flow__edge-path {
+  stroke: var(--text-dim) !important;
+  stroke-width: 1.5px !important;
+}
+
+.react-flow__edge.selected .react-flow__edge-path {
+  stroke: var(--primary) !important;
+}
+
+/* controls */
+.react-flow__controls {
+  background: var(--panel) !important;
+  border: 1px solid var(--border) !important;
+  border-radius: 6px !important;
+  overflow: hidden;
+}
+
+.react-flow__controls-button {
+  background: var(--panel) !important;
+  border: none !important;
+  border-bottom: 1px solid var(--border) !important;
+  color: var(--text) !important;
+  fill: var(--text) !important;
+}
+
+.react-flow__controls-button:hover {
+  background: var(--panel-2) !important;
+}
+
